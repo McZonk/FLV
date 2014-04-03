@@ -1,0 +1,15 @@
+#pragma once
+
+#include <CoreMedia/CoreMedia.h>
+
+uint8_t CMFormatDescriptionGetFLVAudioHeader(CMFormatDescriptionRef formatDescription);
+CFDataRef CMFormatDescriptionCopyFLVAudioPrefixData(CMFormatDescriptionRef formatDescription);
+
+CFDataRef CMFormatDescriptionCopyFLVAudioStartData(CMFormatDescriptionRef formatDescription);
+CFDataRef CMFormatDescriptionCopyFLVAudioFinishData(CMFormatDescriptionRef formatDescription);
+
+uint8_t CMFormatDescriptionGetFLVVideoHeader(CMFormatDescriptionRef formatDescription, Boolean isKeyframe);
+CFDataRef CMFormatDescriptionCopyFLVVideoPrefixData(CMFormatDescriptionRef formatDescription, Boolean isKeyframe);
+
+CFDataRef CMFormatDescriptionCopyFLVVideoStartData(CMFormatDescriptionRef formatDescription);
+CFDataRef CMFormatDescriptionCopyFLVVideoFinishData(CMFormatDescriptionRef formatDescription);
