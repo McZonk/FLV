@@ -245,7 +245,7 @@ CFDataRef CMFormatDescriptionCopyFLVVideoStartData(CMFormatDescriptionRef format
 	
 	const uint8_t videoHeader = CMFormatDescriptionGetFLVVideoHeader(formatDescription, true);
 	
-	if(mediaSubType == kCMVideoCodecType_H264 || mediaSubType == kCMVideoCodecType_H264)
+	if(mediaSubType == kCMVideoCodecType_H264 || mediaSubType == kCMVideoCodecType_MPEG4Video)
 	{
 		CFDataRef extradata = NULL;
 		CMPVideoFormatDescriptionCopyExtradata(NULL, formatDescription, &extradata);
