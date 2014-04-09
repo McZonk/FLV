@@ -57,6 +57,7 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 @property (nonatomic, assign) CMTime audioTimeOffset;
 
 @property (nonatomic, assign) CMTime videoPresentationTimeStamp;
+@property (nonatomic, assign) CMTime audioPresentationTimeStamp;
 
 @end
 
@@ -82,6 +83,7 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		self.audioTimeOffset = kCMTimeInvalid;
 		
 		self.videoPresentationTimeStamp = kCMTimeZero;
+		self.audioPresentationTimeStamp = kCMTimeZero;
 	}
 	return self;
 }
@@ -95,7 +97,7 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		FLVHeader header;
 		header.signature = OSSwapHostToBigInt24(' FLV');
 		header.version = 1;
-		header.flags = 1 /*| 4*/; // TODO: audio
+		header.flags = 1 | 4;
 		header.length = OSSwapHostToBigInt32(9);
 		
 		[stream write:(uint8_t *)&header maxLength:sizeof(header)];
@@ -115,14 +117,11 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 				@"duration": @0,
 				@"videocodecid": @7,
 				@"videodatarate": @125,
-#if 0
-				// TODO: audio
 				@"audiocodecid": @5,
 				@"stereo": @YES,
 				@"audiosamplesize": @16,
 				@"audiosamplerate": @44100,
 				@"audiodatarate": @15.625,
-#endif
 				@"filesize": @0,
 			},
 		];
@@ -230,60 +229,49 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 	}
 	else if(mediaType == kCMMediaType_Audio)
 	{
+		CMTime time = self.audioPresentationTimeStamp;
 		
-#if 0
-		CMFormatDescriptionRef formatDescription = CMSampleBufferGetFormatDescription(sampleBuffer);
-		
-		CMTime pts = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-		
-		NSTimeInterval time = CMTimeGetSeconds(pts);
-		
-		if(self.audioTimeOffset <= 0.0)
+		const CMTime offset = self.audioTimeOffset;
+		if(CMTIME_IS_INVALID(offset))
 		{
-			self.audioTimeOffset = time;
-			time = 0;
+			self.audioTimeOffset = pts;
 			
 			NSData *startData = CFBridgingRelease(CMFormatDescriptionCopyFLVAudioStartData(formatDescription));
 			if(startData != NULL)
 			{
 				FLVTag tag = FLVTagMake(0x08, (uint32_t)startData.length, 0, 0);
 				
-				[self.data appendBytes:&tag length:sizeof(tag)];
-				[self.data appendData:startData];
+				[stream write:(uint8_t *)&tag maxLength:sizeof(tag)];
+				[stream write:(uint8_t *)startData.bytes maxLength:startData.length];
 				
-				{
-					uint32_t previousTagSize = sizeof(tag) + (uint32_t)startData.length;
-					uint32_t length_be = OSSwapHostToBigInt32(previousTagSize);
-					[self.data appendBytes:&length_be length:sizeof(length_be)];
-				}
+				FLVPreviousTag previousTag = FLVPreviousTagMake(sizeof(tag) + (uint32_t)startData.length);
+				[stream write:(uint8_t *)&previousTag maxLength:sizeof(previousTag)];
 			}
 		}
 		else
 		{
-			time -= self.audioTimeOffset;
+			time = CMTimeSubtract(pts, offset);
+			self.videoPresentationTimeStamp = time;
 		}
 		
-		uint32_t timeI = time * 1000;
-		
-		NSData *audioPrefixData = CFBridgingRelease(CMFormatDescriptionCopyFLVAudioPrefixData(formatDescription));
+		NSData *prefixData = CFBridgingRelease(CMFormatDescriptionCopyFLVAudioPrefixData(formatDescription));
 		
 		CMBlockBufferRef dataBuffer = CMSampleBufferGetDataBuffer(sampleBuffer);
-		const size_t length = CMBlockBufferGetDataLength(dataBuffer);
+		const size_t dataLength = CMBlockBufferGetDataLength(dataBuffer);
 		
-		FLVTag tag = FLVTagMake(0x08, (uint32_t)(audioPrefixData.length + length), timeI, 0);
-		
-		[self.data appendBytes:&tag length:sizeof(tag)];
-		[self.data appendData:audioPrefixData];
-		CMPBlockBufferAppendToData(dataBuffer, (__bridge CFMutableDataRef)self.data);
+		NSMutableData *data = [NSMutableData dataWithCapacity:dataLength];
+		CMPBlockBufferAppendToData(dataBuffer, (__bridge CFMutableDataRef)data);
 		
 		{
-			uint32_t previousTagSize = sizeof(tag) + (uint32_t)(audioPrefixData.length + length);
-			uint32_t length_be = OSSwapHostToBigInt32(previousTagSize);
-			[self.data appendBytes:&length_be length:sizeof(length_be)];
+			FLVTag tag = FLVTagMake(0x08, (uint32_t)(prefixData.length + dataLength), (uint32_t)(CMTimeGetSeconds(time) * 1000), 0);
+			
+			[stream write:(uint8_t *)&tag maxLength:sizeof(tag)];
+			[stream write:(uint8_t *)prefixData.bytes maxLength:prefixData.length];
+			[stream write:(uint8_t *)data.bytes maxLength:data.length];
+			
+			FLVPreviousTag previousTag = FLVPreviousTagMake(sizeof(tag) + (uint32_t)(prefixData.length + data.length));
+			[stream write:(uint8_t *)&previousTag maxLength:sizeof(previousTag)];
 		}
-		
-		return;
-#endif
 	}
 	
 	return YES;
