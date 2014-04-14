@@ -233,6 +233,23 @@ CFDataRef CMFormatDescriptionCopyFLVVideoPrefixData(CMFormatDescriptionRef forma
 	}
 }
 
+Boolean CMFormatDescriptionHasFLVVideoStartData(CMFormatDescriptionRef formatDescription)
+{
+	const CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDescription);
+	if(mediaType != kCMMediaType_Video)
+	{
+		return false;
+	}
+
+	const FourCharCode mediaSubType = CMFormatDescriptionGetMediaSubType(formatDescription);
+	if(mediaSubType == kCMVideoCodecType_H264 || mediaSubType == kCMVideoCodecType_MPEG4Video)
+	{
+		return true;
+	}
+	
+	return false;
+}
+
 CFDataRef CMFormatDescriptionCopyFLVVideoStartData(CMFormatDescriptionRef formatDescription)
 {
 	const CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDescription);
@@ -269,6 +286,23 @@ CFDataRef CMFormatDescriptionCopyFLVVideoStartData(CMFormatDescriptionRef format
 		return NULL;
 	}
 	
+}
+
+Boolean CMFormatDescriptionHasFLVVideoFinishData(CMFormatDescriptionRef formatDescription)
+{
+	const CMMediaType mediaType = CMFormatDescriptionGetMediaType(formatDescription);
+	if(mediaType != kCMMediaType_Video)
+	{
+		return false;
+	}
+	
+	const FourCharCode mediaSubType = CMFormatDescriptionGetMediaSubType(formatDescription);
+	if(mediaSubType == kCMVideoCodecType_H264 || mediaSubType == kCMVideoCodecType_MPEG4Video)
+	{
+		return true;
+	}
+	
+	return false;
 }
 
 CFDataRef CMFormatDescriptionCopyFLVVideoFinishData(CMFormatDescriptionRef formatDescription)
