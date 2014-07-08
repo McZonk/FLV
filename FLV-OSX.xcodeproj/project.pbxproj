@@ -140,7 +140,7 @@
 		5024F81E18ED5DAE00B96639 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = McZonk;
 			};
 			buildConfigurationList = 5024F82118ED5DAE00B96639 /* Build configuration list for PBXProject "FLV-OSX" */;
@@ -259,6 +259,7 @@
 		5024F84B18ED5DAE00B96639 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FLV-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -268,6 +269,7 @@
 		5024F84C18ED5DAE00B96639 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FLV-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
