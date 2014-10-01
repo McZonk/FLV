@@ -3,7 +3,10 @@
 #import <AMF/AMF.h>
 #import <CoreMediaPlus/CoreMediaPlus.h>
 
+#import "CMAudioCodec+FLV.h"
 #import "CMSampleBuffer+FLV.h"
+#import "CMVideoCodec+FLV.h"
+
 
 // TODO: rename?
 #define OSSwapBigToHostInt24(x) ((((x) & 0xff0000) >> 16) | ((x) & 0x00ff00) | (((x) & 0x0000ff) << 16))
@@ -77,8 +80,6 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		
 		self.stream = stream;
 		
-		[stream open];
-		
 		self.videoTimeOffset = kCMTimeInvalid;
 		self.audioTimeOffset = kCMTimeInvalid;
 		
@@ -88,17 +89,75 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 	return self;
 }
 
-- (void)startWriting
+- (BOOL)startWritingWithError:(NSError **)error
 {
+	const int videoWidth = self.videoWidth;
+	if(videoWidth <= 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const int videoHeight = self.videoHeight;
+	if(videoHeight <= 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const CMTime videoFrameRate = self.videoFrameRate;
+	if(CMTIME_IS_INVALID(videoFrameRate))
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const Float64 videoFramesPerSecond = ceil((Float64)videoFrameRate.timescale / (Float64)videoFrameRate.value);
+	if(videoFramesPerSecond <= 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const uint32_t videoCodecId = CMVideoCodecGetFLVVideoCodecId(self.videoCodec);
+	if(videoCodecId == 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const CMTime audioSampleRate = self.audioSampleRate;
+	if(CMTIME_IS_INVALID(audioSampleRate))
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const Float64 audioFramesPerSecond = ceil((Float64)videoFrameRate.timescale / (Float64)videoFrameRate.value);
+	if(audioFramesPerSecond <= 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
+	const uint32_t audioCodedId = CMAudioCodecGetFLVAudioCodecId(self.audioCodec);
+	if(audioCodedId == 0)
+	{
+		// TODO: error handling
+		return NO;
+	}
+	
 	NSOutputStream * const stream = self.stream;
 	
+	[stream open];
+
 	// writer header
 	{
 		FLVHeader header;
 		header.signature = OSSwapHostToBigInt24(' FLV');
 		header.version = 1;
 		header.flags = 1 | 4;
-		header.length = OSSwapHostToBigInt32(9);
+		header.length = OSSwapHostToBigInt32(sizeof(header));
 		
 		[stream write:(uint8_t *)&header maxLength:sizeof(header)];
 		
@@ -111,17 +170,17 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		NSArray *AMFObjects = @[
 			@"onMetadata",
 			@{
-				@"width": @720,
-				@"height": @480,
-				@"framerate": @30,
+				@"width": @(videoWidth),
+				@"height": @(videoHeight),
+				@"framerate": @(videoFramesPerSecond),
 				@"duration": @0,
-				@"videocodecid": @7,
-				@"videodatarate": @125,
-				@"audiocodecid": @5,
-				@"stereo": @YES,
-				@"audiosamplesize": @16,
-				@"audiosamplerate": @44100,
-				@"audiodatarate": @15.625,
+				@"videocodecid": @(videoCodecId),
+				@"videodatarate": @125, // TODO
+				@"audiocodecid": @(audioCodedId),
+				@"stereo": @YES, // TODO
+				@"audiosamplesize": @16, // TODO
+				@"audiosamplerate": @(audioFramesPerSecond),
+				@"audiodatarate": @15.625, // TODO
 				@"filesize": @0,
 			},
 		];
@@ -136,6 +195,8 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		FLVPreviousTag previousTag = FLVPreviousTagMake(sizeof(tag) + (uint32_t)AMFData.length);
 		[stream write:(uint8_t *)&previousTag maxLength:sizeof(previousTag)];
 	}
+	
+	return YES;
 }
 
 - (void)endWriting

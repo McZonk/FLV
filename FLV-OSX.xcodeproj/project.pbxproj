@@ -7,32 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5003ABE819D6CEA40038DD74 /* libAMF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5003ABD919D6CE780038DD74 /* libAMF.a */; };
+		5003ABE919D6CEA40038DD74 /* libCoreMediaPlus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5003ABDF19D6CE850038DD74 /* libCoreMediaPlus.a */; };
+		5003ABF019D6D39C0038DD74 /* CMVideoCodec+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 5003ABEE19D6D39C0038DD74 /* CMVideoCodec+FLV.c */; };
+		5003ABF119D6D39C0038DD74 /* CMVideoCodec+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */; };
+		5003ABF419D6D7BA0038DD74 /* CMAudioCodec+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */; };
+		5003ABF519D6D7BA0038DD74 /* CMAudioCodec+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */; };
 		5024F82A18ED5DAE00B96639 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5024F82918ED5DAE00B96639 /* Cocoa.framework */; };
-		5024F85318ED5DFE00B96639 /* FLV-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 5024F85118ED5DFE00B96639 /* FLV-Prefix.pch */; };
 		5024F85418ED5DFE00B96639 /* FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F85218ED5DFE00B96639 /* FLV.h */; };
 		5024F8E618ED672E00B96639 /* FLVWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F8E418ED672E00B96639 /* FLVWriter.h */; };
 		5024F8E718ED672E00B96639 /* FLVWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5024F8E518ED672E00B96639 /* FLVWriter.m */; };
 		5024F8EE18ED686B00B96639 /* CMSampleBuffer+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F8EC18ED686B00B96639 /* CMSampleBuffer+FLV.h */; };
 		5024F8EF18ED686B00B96639 /* CMSampleBuffer+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 5024F8ED18ED686B00B96639 /* CMSampleBuffer+FLV.c */; };
-		5024F8FC18ED6B1600B96639 /* FLVBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F8FA18ED6B1600B96639 /* FLVBase.h */; };
-		5024F8FD18ED6B1600B96639 /* FLVBase.c in Sources */ = {isa = PBXBuildFile; fileRef = 5024F8FB18ED6B1600B96639 /* FLVBase.c */; };
+		509614A119D6CB8F005F290E /* FLVSampleMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 509614A019D6CB8F005F290E /* FLVSampleMovie.m */; };
+		509614A219D6CB8F005F290E /* libFLV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5024F82618ED5DAE00B96639 /* libFLV.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5003ABD819D6CE780038DD74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5003ABD419D6CE780038DD74 /* AMF-OSX.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 50B3377518D83F5100380ECB;
+			remoteInfo = AMF;
+		};
+		5003ABDE19D6CE850038DD74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5003ABDA19D6CE850038DD74 /* CoreMediaPlus-OSX.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5060F47B188DAD6E00621460;
+			remoteInfo = CoreMediaPlus;
+		};
+		5003ABE419D6CE9F0038DD74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5003ABD419D6CE780038DD74 /* AMF-OSX.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 50B3377418D83F5100380ECB;
+			remoteInfo = AMF;
+		};
+		5003ABE619D6CE9F0038DD74 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5003ABDA19D6CE850038DD74 /* CoreMediaPlus-OSX.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5060F47A188DAD6E00621460;
+			remoteInfo = CoreMediaPlus;
+		};
+		509614A319D6CB8F005F290E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5024F81E18ED5DAE00B96639 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5024F82518ED5DAE00B96639;
+			remoteInfo = FLV;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		5003ABD419D6CE780038DD74 /* AMF-OSX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AMF-OSX.xcodeproj"; path = "../AMF/AMF-OSX.xcodeproj"; sourceTree = "<group>"; };
+		5003ABDA19D6CE850038DD74 /* CoreMediaPlus-OSX.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CoreMediaPlus-OSX.xcodeproj"; path = "../CoreMediaPlus/CoreMediaPlus-OSX.xcodeproj"; sourceTree = "<group>"; };
+		5003ABEE19D6D39C0038DD74 /* CMVideoCodec+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMVideoCodec+FLV.c"; sourceTree = "<group>"; };
+		5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMVideoCodec+FLV.h"; sourceTree = "<group>"; };
+		5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMAudioCodec+FLV.c"; sourceTree = "<group>"; };
+		5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMAudioCodec+FLV.h"; sourceTree = "<group>"; };
 		5024F82618ED5DAE00B96639 /* libFLV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFLV.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5024F82918ED5DAE00B96639 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5024F82C18ED5DAE00B96639 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5024F82D18ED5DAE00B96639 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		5024F82E18ED5DAE00B96639 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		5024F83A18ED5DAE00B96639 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		5024F85118ED5DFE00B96639 /* FLV-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLV-Prefix.pch"; sourceTree = "<group>"; };
 		5024F85218ED5DFE00B96639 /* FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLV.h; sourceTree = "<group>"; };
 		5024F8E418ED672E00B96639 /* FLVWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLVWriter.h; sourceTree = "<group>"; };
 		5024F8E518ED672E00B96639 /* FLVWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLVWriter.m; sourceTree = "<group>"; };
 		5024F8EC18ED686B00B96639 /* CMSampleBuffer+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMSampleBuffer+FLV.h"; sourceTree = "<group>"; };
 		5024F8ED18ED686B00B96639 /* CMSampleBuffer+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMSampleBuffer+FLV.c"; sourceTree = "<group>"; };
-		5024F8FA18ED6B1600B96639 /* FLVBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLVBase.h; sourceTree = "<group>"; };
-		5024F8FB18ED6B1600B96639 /* FLVBase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FLVBase.c; sourceTree = "<group>"; };
+		5096149C19D6CB8F005F290E /* FLVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5096149F19D6CB8F005F290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		509614A019D6CB8F005F290E /* FLVSampleMovie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLVSampleMovie.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,13 +93,42 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5096149919D6CB8F005F290E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5003ABE819D6CEA40038DD74 /* libAMF.a in Frameworks */,
+				5003ABE919D6CEA40038DD74 /* libCoreMediaPlus.a in Frameworks */,
+				509614A219D6CB8F005F290E /* libFLV.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5003ABD519D6CE780038DD74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5003ABD919D6CE780038DD74 /* libAMF.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5003ABDB19D6CE850038DD74 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5003ABDF19D6CE850038DD74 /* libCoreMediaPlus.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5024F81D18ED5DAE00B96639 = {
 			isa = PBXGroup;
 			children = (
+				5003ABD419D6CE780038DD74 /* AMF-OSX.xcodeproj */,
+				5003ABDA19D6CE850038DD74 /* CoreMediaPlus-OSX.xcodeproj */,
 				5024F85018ED5DF500B96639 /* FLV */,
+				5096149D19D6CB8F005F290E /* FLVTests */,
 				5024F82818ED5DAE00B96639 /* Frameworks */,
 				5024F82718ED5DAE00B96639 /* Products */,
 			);
@@ -60,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				5024F82618ED5DAE00B96639 /* libFLV.a */,
+				5096149C19D6CB8F005F290E /* FLVTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,16 +166,34 @@
 		5024F85018ED5DF500B96639 /* FLV */ = {
 			isa = PBXGroup;
 			children = (
-				5024F85118ED5DFE00B96639 /* FLV-Prefix.pch */,
 				5024F85218ED5DFE00B96639 /* FLV.h */,
 				5024F8E418ED672E00B96639 /* FLVWriter.h */,
 				5024F8E518ED672E00B96639 /* FLVWriter.m */,
-				5024F8FA18ED6B1600B96639 /* FLVBase.h */,
-				5024F8FB18ED6B1600B96639 /* FLVBase.c */,
 				5024F8EC18ED686B00B96639 /* CMSampleBuffer+FLV.h */,
 				5024F8ED18ED686B00B96639 /* CMSampleBuffer+FLV.c */,
+				5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */,
+				5003ABEE19D6D39C0038DD74 /* CMVideoCodec+FLV.c */,
+				5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */,
+				5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */,
 			);
 			name = FLV;
+			sourceTree = "<group>";
+		};
+		5096149D19D6CB8F005F290E /* FLVTests */ = {
+			isa = PBXGroup;
+			children = (
+				509614A019D6CB8F005F290E /* FLVSampleMovie.m */,
+				5096149E19D6CB8F005F290E /* Supporting Files */,
+			);
+			path = FLVTests;
+			sourceTree = "<group>";
+		};
+		5096149E19D6CB8F005F290E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5096149F19D6CB8F005F290E /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,11 +203,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5024F85318ED5DFE00B96639 /* FLV-Prefix.pch in Headers */,
+				5003ABF119D6D39C0038DD74 /* CMVideoCodec+FLV.h in Headers */,
 				5024F8EE18ED686B00B96639 /* CMSampleBuffer+FLV.h in Headers */,
 				5024F8E618ED672E00B96639 /* FLVWriter.h in Headers */,
-				5024F8FC18ED6B1600B96639 /* FLVBase.h in Headers */,
 				5024F85418ED5DFE00B96639 /* FLV.h in Headers */,
+				5003ABF519D6D7BA0038DD74 /* CMAudioCodec+FLV.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +231,26 @@
 			productReference = 5024F82618ED5DAE00B96639 /* libFLV.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		5096149B19D6CB8F005F290E /* FLVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509614A719D6CB8F005F290E /* Build configuration list for PBXNativeTarget "FLVTests" */;
+			buildPhases = (
+				5096149819D6CB8F005F290E /* Sources */,
+				5096149919D6CB8F005F290E /* Frameworks */,
+				5096149A19D6CB8F005F290E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5003ABE519D6CE9F0038DD74 /* PBXTargetDependency */,
+				5003ABE719D6CE9F0038DD74 /* PBXTargetDependency */,
+				509614A419D6CB8F005F290E /* PBXTargetDependency */,
+			);
+			name = FLVTests;
+			productName = FLVTests;
+			productReference = 5096149C19D6CB8F005F290E /* FLVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -142,6 +259,11 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = McZonk;
+				TargetAttributes = {
+					5096149B19D6CB8F005F290E = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
 			};
 			buildConfigurationList = 5024F82118ED5DAE00B96639 /* Build configuration list for PBXProject "FLV-OSX" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -153,12 +275,50 @@
 			mainGroup = 5024F81D18ED5DAE00B96639;
 			productRefGroup = 5024F82718ED5DAE00B96639 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5003ABD519D6CE780038DD74 /* Products */;
+					ProjectRef = 5003ABD419D6CE780038DD74 /* AMF-OSX.xcodeproj */;
+				},
+				{
+					ProductGroup = 5003ABDB19D6CE850038DD74 /* Products */;
+					ProjectRef = 5003ABDA19D6CE850038DD74 /* CoreMediaPlus-OSX.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				5024F82518ED5DAE00B96639 /* FLV */,
+				5096149B19D6CB8F005F290E /* FLVTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		5003ABD919D6CE780038DD74 /* libAMF.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libAMF.a;
+			remoteRef = 5003ABD819D6CE780038DD74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5003ABDF19D6CE850038DD74 /* libCoreMediaPlus.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCoreMediaPlus.a;
+			remoteRef = 5003ABDE19D6CE850038DD74 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5096149A19D6CB8F005F290E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5024F82218ED5DAE00B96639 /* Sources */ = {
@@ -167,11 +327,38 @@
 			files = (
 				5024F8EF18ED686B00B96639 /* CMSampleBuffer+FLV.c in Sources */,
 				5024F8E718ED672E00B96639 /* FLVWriter.m in Sources */,
-				5024F8FD18ED6B1600B96639 /* FLVBase.c in Sources */,
+				5003ABF419D6D7BA0038DD74 /* CMAudioCodec+FLV.c in Sources */,
+				5003ABF019D6D39C0038DD74 /* CMVideoCodec+FLV.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5096149819D6CB8F005F290E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509614A119D6CB8F005F290E /* FLVSampleMovie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5003ABE519D6CE9F0038DD74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AMF;
+			targetProxy = 5003ABE419D6CE9F0038DD74 /* PBXContainerItemProxy */;
+		};
+		5003ABE719D6CE9F0038DD74 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoreMediaPlus;
+			targetProxy = 5003ABE619D6CE9F0038DD74 /* PBXContainerItemProxy */;
+		};
+		509614A419D6CB8F005F290E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5024F82518ED5DAE00B96639 /* FLV */;
+			targetProxy = 509614A319D6CB8F005F290E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5024F84818ED5DAE00B96639 /* Debug */ = {
@@ -261,7 +448,6 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FLV-Prefix.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -271,7 +457,46 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FLV-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		509614A519D6CB8F005F290E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FLVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		509614A619D6CB8F005F290E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FLVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -293,6 +518,15 @@
 			buildConfigurations = (
 				5024F84B18ED5DAE00B96639 /* Debug */,
 				5024F84C18ED5DAE00B96639 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509614A719D6CB8F005F290E /* Build configuration list for PBXNativeTarget "FLVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509614A519D6CB8F005F290E /* Debug */,
+				509614A619D6CB8F005F290E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
