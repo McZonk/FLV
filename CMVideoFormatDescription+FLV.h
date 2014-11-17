@@ -1,0 +1,10 @@
+#pragma once
+
+#include <CoreMedia/CoreMedia.h>
+
+
+Float64 CMVideoFormatDescriptionGetFLVFrameRate(CMVideoFormatDescriptionRef videoFormatDescription);
+
+Float64 CMVideoFormatDescriptionGetFLVDataRate(CMVideoFormatDescriptionRef videoFormatDescription);
+
+uint32_t CMVideoFormatDescriptionGetFLVCodec(CMVideoFormatDescriptionRef videoFormatDescription);

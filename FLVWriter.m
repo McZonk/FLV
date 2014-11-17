@@ -3,9 +3,9 @@
 #import <AMF/AMF.h>
 #import <CoreMediaPlus/CoreMediaPlus.h>
 
-#import "CMAudioCodec+FLV.h"
+#import "CMAudioFormatDescription+FLV.h"
 #import "CMSampleBuffer+FLV.h"
-#import "CMVideoCodec+FLV.h"
+#import "CMVideoFormatDescription+FLV.h"
 
 
 // TODO: rename?
@@ -91,62 +91,37 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 
 - (BOOL)startWritingWithError:(NSError **)error
 {
-	const int videoWidth = self.videoWidth;
-	if(videoWidth <= 0)
+	CMVideoFormatDescriptionRef videoFormatDescription = self.videoFormatDescription;
+	CMAudioFormatDescriptionRef audioFormatDescription = self.audioFormatDescription;
+
+	const CMVideoDimensions videoDimensions = CMVideoFormatDescriptionGetDimensions(videoFormatDescription);
+	if(videoDimensions.width <= 0 || videoDimensions.height <= 0)
 	{
 		// TODO: error handling
 		return NO;
 	}
 	
-	const int videoHeight = self.videoHeight;
-	if(videoHeight <= 0)
+	const uint32_t videoCodec = CMVideoFormatDescriptionGetFLVCodec(videoFormatDescription);
+	if(videoCodec == 0)
 	{
 		// TODO: error handling
 		return NO;
 	}
 	
-	const CMTime videoFrameRate = self.videoFrameRate;
-	if(CMTIME_IS_INVALID(videoFrameRate))
+	const Float64 videoFrameRate = CMVideoFormatDescriptionGetFLVFrameRate(videoFormatDescription);
+	const Float64 videoDataRate = CMVideoFormatDescriptionGetFLVDataRate(videoFormatDescription);
+
+	const uint32_t audioCodec = CMAudioFormatDescriptionGetFLVCodec(audioFormatDescription);
+	if(audioCodec == 0)
 	{
 		// TODO: error handling
 		return NO;
 	}
 	
-	const Float64 videoFramesPerSecond = ceil((Float64)videoFrameRate.timescale / (Float64)videoFrameRate.value);
-	if(videoFramesPerSecond <= 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
+	const Float64 audioFrameRate = CMAudioFormatDescriptionGetFLVFrameRate(audioFormatDescription);
+	const Float64 audioDataRate = CMAudioFormatDescriptionGetFLVDataRate(audioFormatDescription);
 	
-	const uint32_t videoCodecId = CMVideoCodecGetFLVVideoCodecId(self.videoCodec);
-	if(videoCodecId == 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
-	const CMTime audioSampleRate = self.audioSampleRate;
-	if(CMTIME_IS_INVALID(audioSampleRate))
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
-	const Float64 audioFramesPerSecond = ceil((Float64)videoFrameRate.timescale / (Float64)videoFrameRate.value);
-	if(audioFramesPerSecond <= 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
-	const uint32_t audioCodedId = CMAudioCodecGetFLVAudioCodecId(self.audioCodec);
-	if(audioCodedId == 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
+
 	NSOutputStream * const stream = self.stream;
 	
 	[stream open];
@@ -170,17 +145,17 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 		NSArray *AMFObjects = @[
 			@"onMetadata",
 			@{
-				@"width": @(videoWidth),
-				@"height": @(videoHeight),
-				@"framerate": @(videoFramesPerSecond),
+				@"width": @(videoDimensions.width),
+				@"height": @(videoDimensions.height),
+				@"framerate": @(videoFrameRate),
 				@"duration": @0,
-				@"videocodecid": @(videoCodecId),
-				@"videodatarate": @125, // TODO
-				@"audiocodecid": @(audioCodedId),
+				@"videocodecid": @(videoCodec),
+				@"videodatarate": @(videoDataRate),
+				@"audiocodecid": @(audioCodec),
 				@"stereo": @YES, // TODO
 				@"audiosamplesize": @16, // TODO
-				@"audiosamplerate": @(audioFramesPerSecond),
-				@"audiodatarate": @15.625, // TODO
+				@"audiosamplerate": @(audioFrameRate),
+				@"audiodatarate": @(audioDataRate),
 				@"filesize": @0,
 			},
 		];

@@ -7,13 +7,8 @@
 
 - (instancetype)initWithURL:(NSURL *)URL error:(NSError **)error;
 
-@property (nonatomic, assign) int videoWidth;
-@property (nonatomic, assign) int videoHeight;
-@property (nonatomic, assign) CMTime videoFrameRate;
-@property (nonatomic, assign) CMVideoCodecType videoCodec;
-
-@property (nonatomic, assign) CMTime audioSampleRate;
-@property (nonatomic, assign) CMAudioCodecType audioCodec;
+@property (nonatomic, strong) __attribute__((NSObject)) CMVideoFormatDescriptionRef videoFormatDescription;
+@property (nonatomic, strong) __attribute__((NSObject)) CMAudioFormatDescriptionRef audioFormatDescription;
 
 - (BOOL)startWritingWithError:(NSError **)error;
 - (void)endWriting;
