@@ -4,17 +4,6 @@
 #include "CMAudioCodec+FLV.h"
 
 
-Float64 CMAudioFormatDescriptionGetFLVFrameRate(CMAudioFormatDescriptionRef audioFormatDescription)
-{
-	const AudioStreamBasicDescription *audioStreamBasicDescription = CMAudioFormatDescriptionGetStreamBasicDescription(audioFormatDescription);
-	if(audioStreamBasicDescription == NULL)
-	{
-		return 0.0;
-	}
-	
-	return audioStreamBasicDescription->mSampleRate;
-}
-
 Float64 CMAudioFormatDescriptionGetFLVDataRate(CMAudioFormatDescriptionRef audioFormatDescription)
 {
 	CFNumberRef bitRateValue = CMFormatDescriptionGetExtension(audioFormatDescription, kCMPFormatDescriptionExtension_BitRate);

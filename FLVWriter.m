@@ -3,9 +3,8 @@
 #import <AMF/AMF.h>
 #import <CoreMediaPlus/CoreMediaPlus.h>
 
-#import "CMAudioFormatDescription+FLV.h"
 #import "CMSampleBuffer+FLV.h"
-#import "CMVideoFormatDescription+FLV.h"
+#import "NSMutableDictionary+FLVMetadata.h"
 
 
 // TODO: rename?
@@ -91,36 +90,11 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 
 - (BOOL)startWritingWithError:(NSError **)error
 {
-	CMVideoFormatDescriptionRef videoFormatDescription = self.videoFormatDescription;
-	CMAudioFormatDescriptionRef audioFormatDescription = self.audioFormatDescription;
-
-	const CMVideoDimensions videoDimensions = CMVideoFormatDescriptionGetDimensions(videoFormatDescription);
-	if(videoDimensions.width <= 0 || videoDimensions.height <= 0)
+	NSDictionary *metadata = [NSMutableDictionary FLVMetadataWithVideoFormatDescription:self.videoFormatDescription audioFormatDescription:self.audioFormatDescription error:error];
+	if(metadata == nil)
 	{
-		// TODO: error handling
 		return NO;
 	}
-	
-	const uint32_t videoCodec = CMVideoFormatDescriptionGetFLVCodec(videoFormatDescription);
-	if(videoCodec == 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
-	const Float64 videoFrameRate = CMVideoFormatDescriptionGetFLVFrameRate(videoFormatDescription);
-	const Float64 videoDataRate = CMVideoFormatDescriptionGetFLVDataRate(videoFormatDescription);
-
-	const uint32_t audioCodec = CMAudioFormatDescriptionGetFLVCodec(audioFormatDescription);
-	if(audioCodec == 0)
-	{
-		// TODO: error handling
-		return NO;
-	}
-	
-	const Float64 audioFrameRate = CMAudioFormatDescriptionGetFLVFrameRate(audioFormatDescription);
-	const Float64 audioDataRate = CMAudioFormatDescriptionGetFLVDataRate(audioFormatDescription);
-	
 
 	NSOutputStream * const stream = self.stream;
 	
@@ -144,20 +118,7 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 	{
 		NSArray *AMFObjects = @[
 			@"onMetadata",
-			@{
-				@"width": @(videoDimensions.width),
-				@"height": @(videoDimensions.height),
-				@"framerate": @(videoFrameRate),
-				@"duration": @0,
-				@"videocodecid": @(videoCodec),
-				@"videodatarate": @(videoDataRate),
-				@"audiocodecid": @(audioCodec),
-				@"stereo": @YES, // TODO
-				@"audiosamplesize": @16, // TODO
-				@"audiosamplerate": @(audioFrameRate),
-				@"audiodatarate": @(audioDataRate),
-				@"filesize": @0,
-			},
+			metadata,
 		];
 		
 		NSData *AMFData = [AMFSerialization dataWithAMFObject:AMFObjects options:AMFWritingOptionsSequence error:nil];

@@ -13,6 +13,8 @@
 		5003ABF119D6D39C0038DD74 /* CMVideoCodec+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */; };
 		5003ABF419D6D7BA0038DD74 /* CMAudioCodec+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */; };
 		5003ABF519D6D7BA0038DD74 /* CMAudioCodec+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */; };
+		5016B1861A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h in Headers */ = {isa = PBXBuildFile; fileRef = 5016B1841A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h */; };
+		5016B1871A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 5016B1851A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m */; };
 		5024F82A18ED5DAE00B96639 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5024F82918ED5DAE00B96639 /* Cocoa.framework */; };
 		5024F85418ED5DFE00B96639 /* FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F85218ED5DFE00B96639 /* FLV.h */; };
 		5024F8E618ED672E00B96639 /* FLVWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 5024F8E418ED672E00B96639 /* FLVWriter.h */; };
@@ -86,6 +88,8 @@
 		5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMVideoCodec+FLV.h"; sourceTree = "<group>"; };
 		5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMAudioCodec+FLV.c"; sourceTree = "<group>"; };
 		5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMAudioCodec+FLV.h"; sourceTree = "<group>"; };
+		5016B1841A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+FLVMetadata.h"; sourceTree = "<group>"; };
+		5016B1851A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+FLVMetadata.m"; sourceTree = "<group>"; };
 		5024F82618ED5DAE00B96639 /* libFLV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFLV.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5024F82918ED5DAE00B96639 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		5024F82C18ED5DAE00B96639 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -203,6 +207,8 @@
 				5003ABEE19D6D39C0038DD74 /* CMVideoCodec+FLV.c */,
 				50BE064B1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h */,
 				50BE064C1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c */,
+				5016B1841A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h */,
+				5016B1851A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m */,
 			);
 			name = FLV;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 				5003ABF119D6D39C0038DD74 /* CMVideoCodec+FLV.h in Headers */,
 				5024F8EE18ED686B00B96639 /* CMSampleBuffer+FLV.h in Headers */,
 				5024F8E618ED672E00B96639 /* FLVWriter.h in Headers */,
+				5016B1861A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h in Headers */,
 				50BE06571A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h in Headers */,
 				50BE064D1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h in Headers */,
 				5024F85418ED5DFE00B96639 /* FLV.h in Headers */,
@@ -370,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5024F8EF18ED686B00B96639 /* CMSampleBuffer+FLV.c in Sources */,
+				5016B1871A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m in Sources */,
 				50BE06581A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c in Sources */,
 				5024F8E718ED672E00B96639 /* FLVWriter.m in Sources */,
 				50BE064E1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c in Sources */,
