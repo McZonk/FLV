@@ -23,10 +23,6 @@
 		5024F8EF18ED686B00B96639 /* CMSampleBuffer+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 5024F8ED18ED686B00B96639 /* CMSampleBuffer+FLV.c */; };
 		509614A119D6CB8F005F290E /* FLVSampleMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 509614A019D6CB8F005F290E /* FLVSampleMovie.m */; };
 		509614A219D6CB8F005F290E /* libFLV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5024F82618ED5DAE00B96639 /* libFLV.a */; };
-		50BE064D1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BE064B1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h */; };
-		50BE064E1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 50BE064C1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c */; };
-		50BE06571A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BE06551A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h */; };
-		50BE06581A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c in Sources */ = {isa = PBXBuildFile; fileRef = 50BE06561A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,10 +100,6 @@
 		5096149C19D6CB8F005F290E /* FLVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FLVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5096149F19D6CB8F005F290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		509614A019D6CB8F005F290E /* FLVSampleMovie.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FLVSampleMovie.m; sourceTree = "<group>"; };
-		50BE064B1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMVideoFormatDescription+FLV.h"; sourceTree = "<group>"; };
-		50BE064C1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMVideoFormatDescription+FLV.c"; sourceTree = "<group>"; };
-		50BE06551A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CMAudioFormatDescription+FLV.h"; sourceTree = "<group>"; };
-		50BE06561A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "CMAudioFormatDescription+FLV.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,14 +191,10 @@
 				5024F8E518ED672E00B96639 /* FLVWriter.m */,
 				5003ABF319D6D7BA0038DD74 /* CMAudioCodec+FLV.h */,
 				5003ABF219D6D7BA0038DD74 /* CMAudioCodec+FLV.c */,
-				50BE06551A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h */,
-				50BE06561A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c */,
 				5024F8EC18ED686B00B96639 /* CMSampleBuffer+FLV.h */,
 				5024F8ED18ED686B00B96639 /* CMSampleBuffer+FLV.c */,
 				5003ABEF19D6D39C0038DD74 /* CMVideoCodec+FLV.h */,
 				5003ABEE19D6D39C0038DD74 /* CMVideoCodec+FLV.c */,
-				50BE064B1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h */,
-				50BE064C1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c */,
 				5016B1841A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h */,
 				5016B1851A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m */,
 			);
@@ -241,8 +229,6 @@
 				5024F8EE18ED686B00B96639 /* CMSampleBuffer+FLV.h in Headers */,
 				5024F8E618ED672E00B96639 /* FLVWriter.h in Headers */,
 				5016B1861A1C869000D2942D /* NSMutableDictionary+FLVMetadata.h in Headers */,
-				50BE06571A1A3BA500E5901C /* CMAudioFormatDescription+FLV.h in Headers */,
-				50BE064D1A1A384B00E5901C /* CMVideoFormatDescription+FLV.h in Headers */,
 				5024F85418ED5DFE00B96639 /* FLV.h in Headers */,
 				5003ABF519D6D7BA0038DD74 /* CMAudioCodec+FLV.h in Headers */,
 			);
@@ -378,9 +364,7 @@
 			files = (
 				5024F8EF18ED686B00B96639 /* CMSampleBuffer+FLV.c in Sources */,
 				5016B1871A1C869000D2942D /* NSMutableDictionary+FLVMetadata.m in Sources */,
-				50BE06581A1A3BA500E5901C /* CMAudioFormatDescription+FLV.c in Sources */,
 				5024F8E718ED672E00B96639 /* FLVWriter.m in Sources */,
-				50BE064E1A1A384B00E5901C /* CMVideoFormatDescription+FLV.c in Sources */,
 				5003ABF419D6D7BA0038DD74 /* CMAudioCodec+FLV.c in Sources */,
 				5003ABF019D6D39C0038DD74 /* CMVideoCodec+FLV.c in Sources */,
 			);

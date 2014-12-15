@@ -1,12 +1,14 @@
 #import "NSMutableDictionary+FLVMetadata.h"
 
-#import "CMAudioFormatDescription+FLV.h"
-#import "CMVideoFormatDescription+FLV.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <VideoToolbox/VideoToolbox.h>
+#import "CMAudioCodec+FLV.h"
+#import "CMVideoCodec+FLV.h"
 
 
 @implementation NSMutableDictionary (FLVMetadata)
 
-+ (instancetype)FLVMetadataWithVideoFormatDescription:(CMVideoFormatDescriptionRef)videoFormatDescription audioFormatDescription:(CMAudioFormatDescriptionRef)audioFormatDescription error:(NSError **)error
++ (instancetype)FLVMetadataWithVideoFormatDescription:(CMVideoFormatDescriptionRef)videoFormatDescription videoEncoderSettings:(NSDictionary *)videoEncoderSettings audioFormatDescription:(CMAudioFormatDescriptionRef)audioFormatDescription audioEncoderSettings:(NSDictionary *)audioEncoderSettings error:(NSError **)error
 {
 	NSMutableDictionary *metadata = [NSMutableDictionary dictionary];
 	metadata[@"duration"] = @0;
@@ -22,7 +24,7 @@
 	metadata[@"width"] = @(videoDimensions.width);
 	metadata[@"height"] = @(videoDimensions.height);
 	
-	const uint32_t videoCodec = CMVideoFormatDescriptionGetFLVCodec(videoFormatDescription);
+	const uint32_t videoCodec = CMVideoCodecGetFLVVideoCodecId(CMFormatDescriptionGetMediaSubType(videoFormatDescription));
 	if(videoCodec == 0)
 	{
 		// TODO: error handling
@@ -30,15 +32,22 @@
 		return nil;
 	}
 	metadata[@"videocodecid"] = @(videoCodec);
+
+	NSNumber * const videoFrameRate = videoEncoderSettings[(__bridge NSString *)kVTCompressionPropertyKey_ExpectedFrameRate];
+	if([videoFrameRate isKindOfClass:NSNumber.class])
+	{
+		metadata[@"framerate"] = videoFrameRate;
+	}
 	
-	const Float64 videoFrameRate = CMVideoFormatDescriptionGetFLVFrameRate(videoFormatDescription);
-	metadata[@"framerate"] = @(videoFrameRate);
+//	NSNumber * const videoConstantBitRate = audioEncoderSettings[(__bridge NSString *)kVTCompressionPropertyKey_DataRateLimits];
+	NSNumber * const videoBitRate = videoEncoderSettings[(__bridge NSString *)kVTCompressionPropertyKey_AverageBitRate];
+	if([videoBitRate isKindOfClass:NSNumber.class])
+	{
+		const Float64 videoDataRate = videoBitRate.doubleValue / 1024.0;
+		metadata[@"videodatarate"] = @(videoDataRate);
+	}
 	
-	const Float64 videoDataRate = CMVideoFormatDescriptionGetFLVDataRate(videoFormatDescription);
-	metadata[@"videodatarate"] = @(videoDataRate);
-	
-	
-	const uint32_t audioCodec = CMAudioFormatDescriptionGetFLVCodec(audioFormatDescription);
+	const uint32_t audioCodec = CMAudioCodecGetFLVAudioCodecId(CMFormatDescriptionGetMediaSubType(audioFormatDescription));
 	if(audioCodec == 0)
 	{
 		// TODO: error handling
@@ -63,10 +72,14 @@
 
 	const UInt32 audioChannels = audioStreamBasicDescription->mChannelsPerFrame;
 	metadata[@"stereo"] = audioChannels == 2 ? @YES : @NO;
-
-	const Float64 audioDataRate = CMAudioFormatDescriptionGetFLVDataRate(audioFormatDescription);
-	metadata[@"audiodatarate"] = @(audioDataRate);
 	
+	NSNumber * const audioBitRate = audioEncoderSettings[@(kAudioConverterEncodeBitRate)];
+	if([audioBitRate isKindOfClass:NSNumber.class])
+	{
+		const Float64 audioDataRate = audioBitRate.doubleValue / 1024.0;
+		metadata[@"audiodatarate"] = @(audioDataRate);
+	}
+
 	return metadata;
 }
 

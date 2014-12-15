@@ -3,6 +3,7 @@
 
 @interface NSMutableDictionary (FLVMetadata)
 
-+ (instancetype)FLVMetadataWithVideoFormatDescription:(CMVideoFormatDescriptionRef)videoFormatDescription audioFormatDescription:(CMAudioFormatDescriptionRef)audioFormatDescription error:(NSError **)error;
++ (instancetype)FLVMetadataWithVideoFormatDescription:(CMVideoFormatDescriptionRef)videoFormatDescription videoEncoderSettings:(NSDictionary *)videoEncoderSettings audioFormatDescription:(CMAudioFormatDescriptionRef)audioFormatDescription audioEncoderSettings:(NSDictionary *)audioEncoderSettings error:(NSError **)error
+;
 
 @end
