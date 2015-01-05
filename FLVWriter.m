@@ -90,7 +90,7 @@ static inline FLVPreviousTag FLVPreviousTagMake(uint32_t length)
 
 - (BOOL)startWritingWithError:(NSError **)error
 {
-	NSDictionary *metadata = [NSMutableDictionary FLVMetadataWithVideoFormatDescription:self.videoFormatDescription audioFormatDescription:self.audioFormatDescription error:error];
+	NSDictionary *metadata = [NSMutableDictionary FLVMetadataWithVideoFormatDescription:self.videoFormatDescription videoEncoderSettings:self.videoEncoderSettings audioFormatDescription:self.audioFormatDescription audioEncoderSettings:self.audioEncoderSettings error:error];
 	if(metadata == nil)
 	{
 		return NO;
