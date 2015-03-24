@@ -42,13 +42,17 @@ static uint8_t getFLVAudioLayout(const AudioStreamBasicDescription *description)
 {
 	uint8_t layout = 0;
 	
+	if(description->mFormatID == kAudioFormatMPEG4AAC)
+	{
+		return 0x01 | 0x02 | 0x0c;
+	}
+	
 	if(description->mChannelsPerFrame == 2)
 	{
 		layout |= 0x01;
 	}
 	
-	// assume that aac is always 16 bit
-	if(description->mBitsPerChannel == 16 || description->mFormatID == kAudioFormatMPEG4AAC)
+	if(description->mBitsPerChannel == 16)
 	{
 		layout |= 0x02;
 	}
